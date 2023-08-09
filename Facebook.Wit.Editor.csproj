@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0480420D-0ED0-E4DE-BB85-D4651F1336FA}</ProjectGuid>
+    <ProjectGuid>{230ACF4B-7E16-843B-89D0-D7E0FB353900}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Facebook.Wit.Editor</AssemblyName>
@@ -712,15 +712,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Facebook.WitAI.csproj">
-      <Project>{792FD8A4-8DB7-00F2-DF85-0EC2904DE7DE}</Project>
+      <Project>{5113A617-AE9C-DF77-DAFA-6239C4F99129}</Project>
       <Name>Facebook.WitAI</Name>
     </ProjectReference>
     <ProjectReference Include="Facebook.Wit.Conduit.csproj">
-      <Project>{A5EDD805-6E6B-47E0-9569-1646F6700031}</Project>
+      <Project>{4B108680-3B9C-EE32-0776-27FE9493BA88}</Project>
       <Name>Facebook.Wit.Conduit</Name>
     </ProjectReference>
     <ProjectReference Include="Facebook.Wit.Conduit.Editor.csproj">
-      <Project>{A00D0535-2DA9-3335-EAEA-08F413F39168}</Project>
+      <Project>{1AD43DA2-1C03-224A-17D0-E20FDCDEB778}</Project>
       <Name>Facebook.Wit.Conduit.Editor</Name>
     </ProjectReference>
   </ItemGroup>

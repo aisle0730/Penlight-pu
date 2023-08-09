@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{773ADBC2-B38B-73E3-5BB7-0605E5481F70}</ProjectGuid>
+    <ProjectGuid>{AAAE8145-A120-A667-96A9-CFC2C5EA9F06}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Facebook.Wit.Dictation</AssemblyName>
@@ -669,7 +669,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Facebook.WitAI.csproj">
-      <Project>{792FD8A4-8DB7-00F2-DF85-0EC2904DE7DE}</Project>
+      <Project>{5113A617-AE9C-DF77-DAFA-6239C4F99129}</Project>
       <Name>Facebook.WitAI</Name>
     </ProjectReference>
   </ItemGroup>

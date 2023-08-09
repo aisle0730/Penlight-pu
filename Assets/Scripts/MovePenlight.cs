@@ -53,11 +53,6 @@ public class MovePenlight : MonoBehaviour
 		{
 			StartGhost();
 		}
-
-        if (moveflag)
-        {
-			StartGhost();
-        }
 	}
 
 	public void StartGhost()
@@ -68,7 +63,6 @@ public class MovePenlight : MonoBehaviour
 		if (Recorder.instance.ghostData == null)
 		{
 			Debug.Log("ゴーストデータがありません");
-			//text.text = "ゴーストデータがありません";
 		}
 		else
 		{
@@ -86,7 +80,6 @@ public class MovePenlight : MonoBehaviour
 	{
 
 		var i = random;
-		//var ghostAnimator = ghost.GetComponent<Animator>();
 
 		//Debug.Log("データ数: " + Recorder.instance.ghostData.posLists.Count);
 		Recorder.instance.text.text = "データ数: " + Recorder.instance.ghostData.posLists.Count;
@@ -98,7 +91,6 @@ public class MovePenlight : MonoBehaviour
 
 			transform.position = (Recorder.instance.ghostData.posLists[i] + initialPosition);
 			transform.rotation = Recorder.instance.ghostData.rotLists[i] * initialRotation;
-			//ghostAnimator.SetFloat("Speed", ghostData.speedLists[i]);
 
 			i++;
 
