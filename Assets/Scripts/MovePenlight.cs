@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class MovePenlight : MonoBehaviour
 {
-    private GameObject penlight;
-
-    private Recorder recorder;
-
 	private Vector3 initialPosition;
 
 	private Quaternion initialRotation;

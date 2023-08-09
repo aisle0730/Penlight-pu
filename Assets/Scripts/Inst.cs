@@ -17,22 +17,15 @@ public class Inst : MonoBehaviour
 
     private Vector3 penlightPositionLeft;
 
-    private Recorder controllerPosition;
 
     [SerializeField]
     private Text text;
-
-	private Vector3 initialPosition;
-
-	private Quaternion initialRotation;
 
 	[SerializeField]
 	private GameObject penlightClone;
 
     [SerializeField]
 	private Material[] mats = new Material[5];
-
-	private GameObject light;
 
 	private int random;
 
@@ -74,6 +67,8 @@ public class Inst : MonoBehaviour
 		}
 		random = Random.Range(0, 5);
 
+
+		//—¼‘¤‚É“WŠJ
 		//penlightPositionRight.x += 0.8f;
 
 		//penlightPositionLeft.x -= 0.8f;
@@ -134,6 +129,7 @@ public class Inst : MonoBehaviour
 
 			random = Random.Range(0, 5);
 
+		//—¼‘¤‚É“WŠJ
 		//	penlightPositionRight.x += 0.8f;
 
 		//	penlightPositionLeft.x -= 0.8f;
@@ -193,6 +189,7 @@ public class Inst : MonoBehaviour
 
 		random = Random.Range(0, 5);
 
+		//—¼‘¤‚É“WŠJ
 		//penlightPositionRight.x += 0.8f;
 
 		//penlightPositionLeft.x -= 0.8f;
@@ -218,12 +215,4 @@ public class Inst : MonoBehaviour
 
 
 	}
-
-	
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

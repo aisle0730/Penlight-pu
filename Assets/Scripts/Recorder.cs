@@ -7,21 +7,15 @@ using UnityEngine.UI;
 
 public class Recorder : MonoBehaviour
 {
+	//コントローラ
 	public GameObject player;
 
-    //操作キャラクター
-    [SerializeField]
-    private GameObject ghostChara;
     //　現在記憶しているかどうか
     public bool isRecord;
 	//　保存するデータの最大数
-	[SerializeField]
 	public int maxDataNum = 60000;
 	//　記録間隔
-	[SerializeField]
 	public float recordDuration = 0.01f;
-	//　Jumpキー
-	private string animKey = "Jump";
 	//　経過時間
 	public float elapsedTime = 0f;
 	//　ゴーストデータ
@@ -29,8 +23,7 @@ public class Recorder : MonoBehaviour
 	//　再生中かどうか
 	public bool isPlayBack;
 	//　ゴースト用キャラ
-	[SerializeField]
-	private GameObject ghost;
+	public GameObject ghost;
 	//　ゴーストデータが1周りした後の待ち時間
 	[SerializeField]
 	public float waitTime = 2f;
@@ -39,54 +32,34 @@ public class Recorder : MonoBehaviour
 	//　保存ファイル名
 	private string saveFileName = "/tomaranai.dat";
 
-	private Vector3 initialPosition;
-
-	private Quaternion initialRotation;
-
-    [SerializeField]
+	//デバッグ用UI
 	public Text text;
 
-	[SerializeField]
-	private Text value;
+	public Text value;
 
-	[SerializeField]
-	private Text vector3;
+	public Text vector3;
 
-    [SerializeField]
+    
+
 	public OVRInput.Controller controller;
 
-	[SerializeField]
-	private Transform handAnchor;
+
+	public Transform handAnchor;
 
 
-	[SerializeField]
-	private GameObject penlightClone;
 
-	private Vector3 penlightPosition;
-
-	private Quaternion penlightRotation;
-
-	private float width = 0.42f;
-
-	private Vector3 penlightPositionRight;
-
-	private Vector3 penlightPositionLeft;
-
+	public GameObject penlightClone;
 
 	public Vector3 eyeAnchorDiffernce;
-
-	private Position position;
-
-	private MovePenlight movePenlight;
 
 	public bool isStartGhost = false;
 
 	public static Recorder instance;
 
 
-
+	//曲開始地点
 	public float startTime;
-
+	//曲終了地点
 	public float finishTime;
 
 
@@ -97,30 +70,12 @@ public class Recorder : MonoBehaviour
 			instance = this;
         }
     }
-    void Start()
-	{ 
 
-	}
 
-	// Update is called once per frame
 	void Update()
 	{
-		//if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.LTouch) || Input.GetKeyDown(KeyCode.A))
-		//{
-		//	StartRecord();
-		//}
 
-		//if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch) || Input.GetKeyDown(KeyCode.F))
-		//{
-		//	StopRecord();
-		//}
-
-		//if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch) || Input.GetKeyDown(KeyCode.J))
-		//{
-		//	isStartGhost = true;
-		//}
-
-		if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch) || Input.GetKeyDown(KeyCode.L))
+		if (Input.GetKeyDown(KeyCode.L) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch)) 
 		{
 			StopGhost();
 		}
@@ -130,7 +85,6 @@ public class Recorder : MonoBehaviour
 			Music.instance.PlayMusic();
         }
 
-		//vector3.text = position.controllerPosition.ToString();
 
 		Debug.Log("StartGhost");
 
@@ -145,9 +99,6 @@ public class Recorder : MonoBehaviour
 				ghostData.posLists.Add(OVRInput.GetLocalControllerPosition(this.controller) + eyeAnchorDiffernce);
 				ghostData.rotLists.Add(OVRInput.GetLocalControllerRotation(this.controller));
 				value.text = OVRInput.GetLocalControllerPosition(this.controller).ToString();
-                //ghostData.speedLists.Add(animator.GetFloat("Speed"));
-                //Debug.Log(ghostData.posLists[ghostData.posLists.Count - 1]);
-				//Debug.Log(ghostData.posLists.Count);
 
 				elapsedTime = 0f;
 
@@ -160,7 +111,6 @@ public class Recorder : MonoBehaviour
 		}
 	}
 
-	[Serializable]
 	public class GhostData
 	{
 		//　位置のリスト
@@ -203,32 +153,6 @@ public class Recorder : MonoBehaviour
 	}
 
 
-
-	//　ゴーストの再生ボタンを押した時の処理
-	//public void StartGhost()
-	//{
-	//	Debug.Log("StartGhost");
-	//	text.text = "StartGhost";
-	//	if (ghostData == null)
-	//	{
-	//		Debug.Log("ゴーストデータがありません");
-	//		text.text = "ゴーストデータがありません";
-	//	}
-	//	else
-	//	{
-	//		isRecord = false;
-	//		isPlayBack = true;
-	//		ghost.transform.position = ghostData.posLists[0] + initialPosition;
-	//		ghost.transform.rotation = ghostData.rotLists[0] * initialRotation;
-	//		ghost.SetActive(true);
-	//		//music.PlayMusic();
-	//		StartCoroutine(PlayBack());
-	//	}
-	//}
-
-
-
-
 	//　ゴーストの停止
 	public void StopGhost()
 	{
@@ -242,48 +166,7 @@ public class Recorder : MonoBehaviour
 	}
 
 
-
-
-	//　ゴーストの再生
-	//IEnumerator PlayBack()
-	//{
-
-	//	var i = 0;
-	//	//var ghostAnimator = ghost.GetComponent<Animator>();
-
-	//	Debug.Log("データ数: " + ghostData.posLists.Count);
-	//	text.text = "データ数: " + ghostData.posLists.Count;
-
-	//	while (isPlayBack)
-	//	{
-
-	//		yield return new WaitForSeconds(recordDuration);
-
-	//		ghost.transform.position = ghostData.posLists[i] + initialPosition;
-	//		ghost.transform.rotation = ghostData.rotLists[i] * initialRotation;
-	//		//ghostAnimator.SetFloat("Speed", ghostData.speedLists[i]);
-
-	//		i++;
-
-	//		//　保存データ数を超えたら最初から再生
-	//		if (i >= ghostData.posLists.Count)
-	//		{
-
-	//			//ghostAnimator.SetFloat("Speed", 0f);
-	//			//ghostAnimator.ResetTrigger("Jump");
-
-	//			//　アニメーション途中で終わった時用に待ち時間を入れる
-	//			yield return new WaitForSeconds(waitTime);
-
-	//			//music.PlayMusic();
-
-	//			ghost.transform.position = ghostData.posLists[0] + initialPosition;
-	//			ghost.transform.rotation = ghostData.rotLists[0] * initialRotation;
-
-	//			i = 0;
-	//		}
-	//	}
-	//}
+		
 
 	public void Save()
 	{
@@ -317,6 +200,6 @@ public class Recorder : MonoBehaviour
 	void OnApplicationQuit()
 	{
 		Debug.Log("アプリケーション終了");
-		//Save();
+		Save();
 	}
 }
