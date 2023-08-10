@@ -49,7 +49,7 @@ public class MovePenlight : MonoBehaviour
     void Update()
     {
 
-		if (OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch) || Input.GetKeyDown(KeyCode.J))
+		if (Input.GetKeyUp(KeyCode.J) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.LTouch))
 		{
 			StartGhost();
 		}
@@ -57,7 +57,7 @@ public class MovePenlight : MonoBehaviour
 
 	public void StartGhost()
 	{
-		//Debug.Log("StartGhost");
+		Debug.Log("StartGhost");
 		Recorder.instance.text.text = "StartGhost";
 		moveflag = false;
 		if (Recorder.instance.ghostData == null)

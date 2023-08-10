@@ -25,12 +25,11 @@ public class Recorder : MonoBehaviour
 	//　ゴースト用キャラ
 	public GameObject ghost;
 	//　ゴーストデータが1周りした後の待ち時間
-	[SerializeField]
 	public float waitTime = 2f;
 	//　保存先フォルダ
-	private string saveDataFolder;
+	//private string saveDataFolder;
 	//　保存ファイル名
-	private string saveFileName = "/tomaranai.dat";
+	private string saveFileName = "/ghostdata.dat";
 
 	//デバッグ用UI
 	public Text text;
@@ -75,16 +74,31 @@ public class Recorder : MonoBehaviour
 	void Update()
 	{
 
-		if (Input.GetKeyDown(KeyCode.L) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch)) 
+		if (Input.GetKeyUp(KeyCode.K) || OVRInput.GetDown(OVRInput.Button.Two, OVRInput.Controller.RTouch)) 
 		{
 			StopGhost();
 		}
 
-		if (Input.GetKeyDown(KeyCode.M) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+		if (Input.GetKeyUp(KeyCode.M) || OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
         {
 			Music.instance.PlayMusic();
         }
 
+        if (Input.GetKeyUp(KeyCode.Z))
+        {
+			StartRecord();
+
+		}
+
+		if (Input.GetKeyUp(KeyCode.X))
+        {
+			StopRecord();
+		}
+
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+			Load();
+        }
 
 		Debug.Log("StartGhost");
 
@@ -200,6 +214,6 @@ public class Recorder : MonoBehaviour
 	void OnApplicationQuit()
 	{
 		Debug.Log("アプリケーション終了");
-		Save();
+		//Save();
 	}
 }
