@@ -189,8 +189,8 @@ public class Recorder : MonoBehaviour
 			//　GhostDataクラスをJSONデータに書き換え
 			var data = JsonUtility.ToJson(ghostData);
 			//　ゲームフォルダにファイルを作成
-			Debug.Log(Application.persistentDataPath + saveFileName);
-			File.WriteAllText(Application.persistentDataPath + saveFileName, data);
+			Debug.Log("Assets" + saveFileName);
+			File.WriteAllText("Assets" + saveFileName, data);
 			Debug.Log("ゴーストデータをセーブしました");
 		}
 	}
@@ -198,9 +198,9 @@ public class Recorder : MonoBehaviour
 	public void Load()
 	{
 
-		if (File.Exists(Application.persistentDataPath + saveFileName))
+		if (File.Exists("Assets" + saveFileName))
 		{
-			string readAllText = File.ReadAllText(Application.persistentDataPath + saveFileName);
+			string readAllText = File.ReadAllText("Assets" + saveFileName);
 			//　ghostDataに読み込んだデータを書き込む
 			if (ghostData == null)
 			{
